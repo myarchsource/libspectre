@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libspectre
+Description: libgs wrapper library
+Version: @VERSION@
+
+Libs: -L${libdir} -lspectre
+Cflags: -I${includedir}
+

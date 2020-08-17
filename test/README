@@ -1,0 +1,9 @@
+Fuzz testing
+============
+
+fuzz-test is an executable used for reproducing test cases, it takes a file
+as argument and passes it to the fuzz target, set CFLAGS to enable a sanitizer,
+for example: CFLAGS="-fsanitize=address -g" ./autogen.sh; make
+
+NOTE: The executables may be linked against the system library, check with
+      `ldd fuzz-test` and use `sudo make install` as a workaround if necessary.

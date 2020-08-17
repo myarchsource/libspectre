@@ -1,0 +1,2362 @@
+commit 5e1a10e97c29c06756e65a97c7f9e23117eb3646
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Wed May 6 22:07:40 2020 +0200
+
+    release: 0.2.9
+
+ NEWS         | 17 +++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 19 insertions(+), 2 deletions(-)
+
+commit 8d026495dc62fd4a1f41c95c1eea22589e2b623e
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Apr 26 19:18:04 2020 +0200
+
+    Move spectre_document_load_from_stream to spectre-private.h for now
+    
+    Not ready for the prime time
+
+ libspectre/spectre-document.h | 9 ---------
+ libspectre/spectre-private.h  | 9 +++++++++
+ test/spectre_read_fuzzer.c    | 1 +
+ 3 files changed, 10 insertions(+), 9 deletions(-)
+
+commit 3639f1fe932d8374dd482de4e01457afe3e43a34
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Apr 13 15:51:08 2020 +0200
+
+    Make sure we don't read uninitialized memory from text
+    
+    oss-fuzz/21670
+
+ libspectre/ps.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 465a5c66e5e1ea04a8f70105b1db4ef8051c0428
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Fri Apr 10 19:26:21 2020 +0200
+
+    Initialize varibles if reading fails
+    
+    This way we don't do uninitizlied memory uses later on
+    
+    oss-fuzz/21638
+
+ libspectre/ps.c | 44 ++++++++++++++++++++++++++++++--------------
+ 1 file changed, 30 insertions(+), 14 deletions(-)
+
+commit af1cb4cb719dcb94314bbefc78b59ac426b8fed2
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Wed Apr 8 23:52:43 2020 +0200
+
+    Fix uninitialized memory read on malformed documents
+
+ libspectre/ps.c | 24 +++++++++++++-----------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
+
+commit 48735999ca27fca8f154aa15c078c4576ab64ae5
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Wed Apr 8 23:52:43 2020 +0200
+
+    Fix uninitialized memory read on malformed documents
+
+ libspectre/ps.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit dd7168828cf07971adc8c24bab0f3b6e3d28e0c9
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Wed Apr 8 23:09:45 2020 +0200
+
+    Fix crash on malformed files
+
+ libspectre/ps.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+commit f56ba915e3f125130f131cca8a89580e1990c0e2
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Mar 28 18:59:50 2020 +0100
+
+    Fix memory leak
+    
+    oss-fuzz/21240
+
+ libspectre/ps.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit c37b6b33d0558fa84936cb7b7f40694282f9c05a
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Mar 28 19:02:54 2020 +0100
+
+    CI: use debian testing while unstable is broken
+
+ .gitlab-ci.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 945d39259c0ca1dfd6c594a9d3ed971152313190
+Author: Randy <randy408@protonmail.com>
+Date:   Tue Mar 10 23:48:10 2020 +0100
+
+    fix memory leak in ps.c:650
+
+ libspectre/ps.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a6329a26cbc8a920cf56531a762bfbf62b3ddc9d
+Author: Randy <randy408@protonmail.com>
+Date:   Tue Mar 10 21:34:26 2020 +0000
+
+    Refactor spectre_document_load_from_data() -> _stream()
+
+ libspectre/spectre-document.c | 47 ++++++++++---------------------------------
+ libspectre/spectre-document.h | 16 +++++++--------
+ test/spectre_read_fuzzer.c    | 17 ++++++++++++++--
+ 3 files changed, 33 insertions(+), 47 deletions(-)
+
+commit 567f72a04dcc5e883e708bd2a3a149e818c1c12f
+Author: Randy <randy408@protonmail.com>
+Date:   Sat Mar 7 10:49:20 2020 +0100
+
+    fix memory leak in ps.c:603
+
+ libspectre/ps.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ebc0c1ef2e36cb50267689cc44338a17d2895725
+Author: Randy <randy408@protonmail.com>
+Date:   Sat Mar 7 10:11:03 2020 +0100
+
+    fix NULL-dereference in psscan.c:934
+
+ libspectre/ps.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3bff18aa496ff00b9ddd127c83241a4399850ef0
+Author: Randy <randy408@protonmail.com>
+Date:   Tue Mar 3 08:33:22 2020 +0000
+
+    fix NULL-dereference in psscan()
+    
+    Fixes https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=20986
+
+ libspectre/ps.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 79741b6e1b8abdcb7366d4f35d9bfa041854bfab
+Author: Randy <randy408@protonmail.com>
+Date:   Mon Mar 2 20:58:40 2020 +0000
+
+    Fix memory leak
+    
+    Fixes https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=20283
+
+ libspectre/ps.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit 836217c48d2b499f9dda2dcc848cf1dc85a4b18a
+Author: Randy <randy408@protonmail.com>
+Date:   Sat Feb 29 10:47:54 2020 +0100
+
+    ossfuzz: integrate into build, add entrypoint
+
+ test/Makefile.am | 16 +++++++++++++++-
+ test/README      |  9 +++++++++
+ test/fuzz_main.c | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 78 insertions(+), 1 deletion(-)
+
+commit 920c30cf1d4353b28266fc91f88b2ae72e0f5e4f
+Author: Randy <randy408@protonmail.com>
+Date:   Sat Feb 29 10:55:27 2020 +0000
+
+    Add spectre_document_load_from_data(), update fuzz target
+
+ libspectre/spectre-document.c | 53 +++++++++++++++++++++++++++++++++++++------
+ libspectre/spectre-document.h | 13 +++++++++++
+ test/spectre_read_fuzzer.c    | 14 +++---------
+ 3 files changed, 62 insertions(+), 18 deletions(-)
+
+commit ca205d084434915127e64a9d54eafd05cdee872b
+Author: Randy <randy408@protonmail.com>
+Date:   Wed Feb 19 14:33:03 2020 +0100
+
+    ossfuzz: fix coverage build
+
+ test/ossfuzz.sh | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+commit 7ae80bff9ee04793a1c0d59e538da7802f81a43d
+Author: Randy <randy408@protonmail.com>
+Date:   Tue Feb 18 21:33:37 2020 +0000
+
+    Refactor code so that psscan() can accept a FILE*, this will enable parsing from fmemopen()'d buffers. I figured this should be merged separately before spectre_document_load_from_data() is added.
+
+ libspectre/ps.c               | 11 +----------
+ libspectre/ps.h               |  1 +
+ libspectre/spectre-document.c | 14 +++++++++++++-
+ test/parser-test.c            |  2 +-
+ 4 files changed, 16 insertions(+), 12 deletions(-)
+
+commit bdc1caaeb22832a0dc1f7420a497cd2382d5edd6
+Author: Randy <randy408@protonmail.com>
+Date:   Thu Feb 13 16:43:36 2020 +0100
+
+    ossfuzz: add dictionary, update build script
+
+ test/ossfuzz.sh      |  7 +++++--
+ test/postscript.dict | 58 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 63 insertions(+), 2 deletions(-)
+
+commit cc41bfe79d2ab2f72a3a11ae1db946f7575e891a
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Jan 5 22:35:10 2020 +0100
+
+    Revert "ossfuzz: keep shared libraries after install"
+    
+    This reverts commit 9b1e58286c7c72baaba55f07bfb42db03240fecf.
+
+ test/ossfuzz.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 9b1e58286c7c72baaba55f07bfb42db03240fecf
+Author: Randy <randy408@protonmail.com>
+Date:   Wed Jan 1 23:15:59 2020 +0100
+
+    ossfuzz: keep shared libraries after install
+
+ test/ossfuzz.sh | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 1a367871cbe7dab1a70be0779ba1b0306e41e760
+Author: Randy <randy408@protonmail.com>
+Date:   Sun Dec 8 20:04:20 2019 +0100
+
+    fix leak in spectre_device_render()
+
+ libspectre/spectre-device.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit ceeeec8ee480c9cce066c0921665ef647bd5c135
+Author: Randy <randy408@protonmail.com>
+Date:   Tue Nov 26 16:07:07 2019 +0100
+
+    update ossfuzz.sh
+
+ test/ossfuzz.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a75690875044349b24c521db87db8065da294d16
+Author: Randy <randy408@protonmail.com>
+Date:   Tue Nov 26 15:48:53 2019 +0100
+
+    update fuzz target
+
+ test/spectre_read_fuzzer.c  | 49 +++++++++++++++++++++++++++++++++++++++++++++
+ test/spectre_read_fuzzer.cc | 46 ------------------------------------------
+ 2 files changed, 49 insertions(+), 46 deletions(-)
+
+commit de4eaa73e94516ba6c8ddda364cf2f59b4eb28ca
+Author: Randy <randy408@protonmail.com>
+Date:   Sun Nov 24 11:42:17 2019 +0100
+
+    fix indentation
+
+ test/spectre_read_fuzzer.cc | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit fc996641b011adbf21e4205a32ac02f6543f5fd4
+Author: Randy <randy408@protonmail.com>
+Date:   Wed Nov 20 12:36:56 2019 +0100
+
+    add build script, fuzz target
+
+ test/ossfuzz.sh             | 20 ++++++++++++++++++++
+ test/spectre_read_fuzzer.cc | 46 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 66 insertions(+)
+
+commit 90000c9d5c1d0928e02da0a799bb81676589e073
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Sat Oct 20 00:17:47 2018 +0200
+
+    spectre-gs: Remove support for old ghostscript
+    
+    Now that we require a recent ghostscript, we can remove
+    the support for older versions.
+
+ libspectre/spectre-device.c |  9 +++------
+ libspectre/spectre-gs.c     | 21 +++++----------------
+ 2 files changed, 8 insertions(+), 22 deletions(-)
+
+commit 75e154f89565af475ef4c9c9a01a805eadb9405e
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Sat Oct 20 00:17:47 2018 +0200
+
+    spectre-gs: Enforce minimum ghostscript version
+    
+    Ghostscript versions before 9.24 had a critical vulnerability
+    allowing to escape -dSAFER; refuse to do anything if the version
+    is less than 9.24.
+    
+    https://gitlab.freedesktop.org/libspectre/libspectre/issues/25
+
+ configure.ac            |  2 +-
+ libspectre/spectre-gs.c | 12 +++++++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+commit 48696f7e724923564dd6c8908afdb7c9d4893f02
+Author: Albert Astals Cid <albert.astals.cid@kdab.com>
+Date:   Fri Oct 19 18:03:51 2018 +0200
+
+    Make clang happy
+    
+    ps.c:1875:9: warning: promoted type 'int' of K&R function parameter is not compatible with the parameter type 'char' declared in a previous prototype [-Wknr-promoted-parameter]
+       char charP;
+            ^
+    ps.c:197:88: note: previous declaration is here
+    static char    *readlineuntil PT((FileData, long, char **, long *, unsigned int *, char));
+                                                                                           ^
+    ps.c:2212:13: warning: promoted type 'int' of K&R function parameter is not compatible with the parameter type 'unsigned short' declared in a previous prototype [-Wknr-promoted-parameter]
+        PS_WORD val;
+                ^
+    ps.c:206:48: note: previous declaration is here
+    static PS_WORD         reorder_word PT((PS_WORD));
+
+ libspectre/ps.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
+
+commit 92a478f926ded10dc15726e31998d041d6ff7794
+Author: Christian Persch <chpe@src.gnome.org>
+Date:   Fri Oct 19 21:07:36 2018 +0200
+
+    Hide internal symbols
+    
+    Use hidden visibility by default and make only the public API
+    symbols visible.
+    
+    https://gitlab.freedesktop.org/libspectre/libspectre/issues/30
+
+ configure.ac                        | 33 +++++++++++++++++++++++++++++++++
+ libspectre/Makefile.am              |  3 +++
+ libspectre/spectre-document.h       | 20 ++++++++++++++++++++
+ libspectre/spectre-exporter.h       |  6 +++++-
+ libspectre/spectre-macros.h         |  8 ++++++++
+ libspectre/spectre-page.h           |  8 ++++++++
+ libspectre/spectre-render-context.h | 14 ++++++++++++++
+ libspectre/spectre-status.h         |  1 +
+ test/Makefile.am                    | 12 ++++++++++--
+ 9 files changed, 102 insertions(+), 3 deletions(-)
+
+commit 17c72f0560bf079cbd0e6df5dd3445cb8f05660a
+Author: Albert Astals Cid <albert.astals.cid@kdab.com>
+Date:   Fri Oct 19 17:41:01 2018 +0200
+
+    Make gcc happy about switch fallthrough
+
+ libspectre/ps.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 818ff44e1e1e665efeeccc2a58c6453949368638
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Oct 13 00:39:28 2018 +0200
+
+    Fix crash with malformed document
+    
+    Closes issue #14
+
+ libspectre/ps.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f4f8cb65e01e62c86354a6697307f9549136a66e
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Oct 13 00:08:49 2018 +0200
+
+    Add basic CI
+
+ .gitlab-ci.yml | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+commit f88d2c259242936bbc3c74bf43107626c0f5ad61
+Author: Caolán McNamara <caolanm@redhat.com>
+Date:   Fri Jan 13 09:56:14 2017 +0000
+
+    state what lib is printing the error
+    
+    and where it originally came from
+    
+    so its clear where
+    
+    "undefined -21" came from in cases like
+    https://bugzilla.gnome.org/show_bug.cgi?id=678500
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=99395
+
+ libspectre/spectre-gs.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 1cdaa3fa1da8e0b3b1d2df8cfa5027d2a7b24418
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Jul 2 10:07:09 2016 +0200
+
+    release: 0.2.8
+
+ NEWS         | 16 ++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+commit 974f3ef9dd389448fbe81c4a4f19d679d4d30374
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Jul 2 10:06:13 2016 +0200
+
+    build: Fix make distcheck
+
+ Makefile.am | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit 38bb113d18ac0e7872dfac311295c8f42e9a260f
+Author: Marek Kasik <mkasik@redhat.com>
+Date:   Wed Jan 7 18:35:16 2015 +0100
+
+    Rotate documents correctly with newer libgs versions
+    
+    Rotate result of rendering given by ghostscript when libgs >= 9.08.
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=76450
+
+ libspectre/spectre-device.c | 108 +++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 106 insertions(+), 2 deletions(-)
+
+commit 316168c4dc24932a832a66a915be01a22906bacd
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jun 23 17:40:35 2016 +0200
+
+    spectre-gs: Add a method to get the libgs version
+
+ libspectre/spectre-gs.c | 11 +++++++++++
+ libspectre/spectre-gs.h |  2 +-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+commit 34a52f30400aab1c21c69c31122d496751d7d99e
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Apr 2 11:15:38 2016 +0200
+
+    Fix the build with Ghostscript >= 9.18
+
+ libspectre/spectre-gs.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit ebbff50f9a32725e6533130e235ebabbb1cd6e84
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Sep 3 17:20:33 2014 +0200
+
+    Revert "Rotate documents correctly"
+    
+    This reverts commit c0b7b178d455f00b21e6317376ab49324bddb340.
+
+ libspectre/spectre-device.c       | 58 +++++++++++++---------------------
+ libspectre/spectre-exporter-pdf.c |  4 ---
+ libspectre/spectre-gs.c           | 65 ++++++---------------------------------
+ libspectre/spectre-gs.h           |  6 +---
+ 4 files changed, 31 insertions(+), 102 deletions(-)
+
+commit c0b7b178d455f00b21e6317376ab49324bddb340
+Author: Marek Kasik <mkasik@redhat.com>
+Date:   Mon Jun 9 13:26:53 2014 +0200
+
+    Rotate documents correctly
+    
+    Set correct size of rendered images when a rotation
+    is requested. Use "rotate" command to rotate documents
+    instead of setting of "Orientation". Adjust offsets
+    accordingly. Don't execute "setpagedevice" when rendering
+    to "display" device.
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=76450
+
+ libspectre/spectre-device.c       | 58 +++++++++++++++++++++-------------
+ libspectre/spectre-exporter-pdf.c |  4 +++
+ libspectre/spectre-gs.c           | 65 +++++++++++++++++++++++++++++++++------
+ libspectre/spectre-gs.h           |  6 +++-
+ 4 files changed, 102 insertions(+), 31 deletions(-)
+
+commit 3e104448c4f532802dfaf30a42618bc09be99159
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Nov 3 10:54:36 2012 +0100
+
+    build: Use CPPFLAGS instead of CFLAGS for compiling flags
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=56481
+
+ libspectre/Makefile.am |  5 +----
+ test/Makefile.am       | 10 ++++------
+ 2 files changed, 5 insertions(+), 10 deletions(-)
+
+commit 6f6a8c2f9d921185a1403be27ec013d9f48a8cbf
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Nov 3 10:45:01 2012 +0100
+
+    ps: Fix comparison between signed and unsigned compile warning
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=56476
+
+ libspectre/ps.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit e02ef42c0725935fce74415cc48fa5f50ec6d023
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Aug 8 17:21:55 2012 +0200
+
+    Update for release 0.2.7
+
+ NEWS         | 10 ++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+commit b2d0de2665baead41e86f40fb51260e9a94c2210
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Aug 8 16:43:57 2012 +0200
+
+    build: Don't use global INCLUDES var in makefiles
+
+ libspectre/Makefile.am | 12 ++++++------
+ test/Makefile.am       | 19 +++++++++++++------
+ 2 files changed, 19 insertions(+), 12 deletions(-)
+
+commit 8ffd9185f81cb8337cece4c8e3672d0e6a97e935
+Author: Marek Kasik <mkasik@redhat.com>
+Date:   Wed Nov 24 15:54:14 2010 +0100
+
+    Allocate at least 1 page in doc->pages
+    
+    Allocate at least 1 page if there are no %%Pages: or %%Page: comments
+    in the PS file (#31512).
+
+ libspectre/ps.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 7500e4d1ae85ecf9f61b1446e07ebb887118757c
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 30 15:55:18 2010 +0200
+
+    Fix a crash with documents containing an invalid %%Pages: comment
+    
+    When failed to allocate memory for pages because of invalid %%Pages:
+    comment, set maxpages to 0 to ignore the comment. Problem spotted
+    by Marek Kasik. Fixes bug #30867.
+
+ libspectre/ps.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 213dfcef5ee9e44f0f9e9026222beb0e69a4257d
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jun 10 13:20:21 2010 +0200
+
+    Update for release 0.2.6
+
+ NEWS         | 19 +++++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 21 insertions(+), 2 deletions(-)
+
+commit b389eb07cf793fec3a7c7cd4c75a2752a72f51ad
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Jun 1 14:39:54 2010 +0200
+
+    Fix rendering of files with doseps header and EOF comment missing
+    
+    Fixes bug #27830.
+
+ libspectre/ps.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 64405a78fdce7e028d91bdc68ab497d4c8a53bf0
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Jun 1 11:35:34 2010 +0200
+
+    Add --enable-iso-c configure option disabled by default
+    
+    It uses, if available, -ansic and -pedantic flags. See bug #27735
+
+ configure.ac | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 8e28de56006377184aa2ac2220afd82c9a2431d1
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Jun 1 11:09:57 2010 +0200
+
+    Remove unneeded #include
+    
+    See bug #27734.
+
+ libspectre/spectre-device.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 4bcf3ff07f962712f71b2dc6dbd5f7e8f95e566a
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Jun 1 11:01:29 2010 +0200
+
+    Make Ghostscript not look first in the current directory for library files
+
+ libspectre/spectre-device.c       | 3 ++-
+ libspectre/spectre-exporter-pdf.c | 5 +++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+commit ee8c5a19138f33dd4c40da4e3def16eba48eccc1
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Apr 18 19:01:01 2010 +0200
+
+    Update for release 0.2.5
+
+ NEWS         | 16 ++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+commit 233babb7bf516aac10b853785b8d22c7d6fa777e
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Apr 18 18:28:34 2010 +0200
+
+    Use %I64x format for DisplayHandle on Windows 64 bits
+
+ libspectre/spectre-device.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit ce55aa1110f3b933943a92ecd0a948d017cdb492
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Apr 6 17:24:59 2010 +0200
+
+    Fix a crash in pdf exporter when rendering fails
+
+ libspectre/spectre-exporter-pdf.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 35aa9dfac2631de24a40d95d1469acb52f379249
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Mar 28 13:18:38 2010 +0200
+
+    Use the correct format string for DisplayHandle arg depending on the platform
+
+ libspectre/spectre-device.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit 75a268029e803a34ce93b7094809ee15be0a9c08
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 21 20:49:15 2010 +0100
+
+    Update for release 0.2.4
+
+ NEWS         | 15 +++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+
+commit 6dc6c41ba977e8bee0fd71f3db4c3c92287ee71f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 21 17:49:05 2010 +0100
+
+    Fix compile warning
+
+ libspectre/spectre-render-context.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 51c6a92e7bf7261a19eb1d9e776ce11957c213c4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 21 17:46:17 2010 +0100
+
+    Use AM_SILENT_RULES when available
+
+ autogen.sh   | 10 +++++-----
+ configure.ac |  2 ++
+ 2 files changed, 7 insertions(+), 5 deletions(-)
+
+commit 8a720825f6ee77d6945833c59609f6a9141dad19
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 21 17:24:54 2010 +0100
+
+    Use spectre_gs_process() instead of spectre_gs_send_page() in pdf exporter
+    
+    When rendering with the display device we use a new gs instance for
+    every page and we have to process prolog, setup and trailer for every
+    page. PDF exporter is different, we use a single gs instance created in
+    exporter_pdf_begin() and destroyed in exporter_pdf_end(). Now we use
+    spectre_gs_process() to send prolog and setup in begin() and trailer in
+    end() so that we just send the page contents in do_page().
+    Fixes bug #26592.
+
+ libspectre/spectre-exporter-pdf.c | 43 ++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 40 insertions(+), 3 deletions(-)
+
+commit 18a4e6d9746614227b404df4399471d2a2858f1f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 21 17:22:07 2010 +0100
+
+    Make spectre_gs_process() public so that it can be used by exporters
+    
+    It's public in the internal private API
+
+ libspectre/spectre-gs.c | 2 +-
+ libspectre/spectre-gs.h | 6 ++++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit d25e37b5e52d83af50924a548da6f10983960735
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 21 13:22:18 2010 +0100
+
+    Ignore page order parameter of %%Pages if there's a %%PageOrder comment
+    
+    It caused problems in documents where there's a %%PageOrder after the
+    %%Pages comment. See evince bug https://bugzilla.gnome.org/show_bug.cgi?id=585436
+
+ libspectre/ps.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit b039f45f826e4516b8717d0bcfbee692fab4d385
+Author: Hib Eris <hib@hiberis.nl>
+Date:   Tue Feb 2 11:38:04 2010 +0100
+
+    Add -no-undefined to LDFLAGS for building w32 dll
+
+ libspectre/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a03d49102e2d83b1ee008296da426b67e5585302
+Author: Hib Eris <hib@hiberis.nl>
+Date:   Tue Feb 2 11:13:53 2010 +0100
+
+    Use _vscprintf instead of vsnprintf when available
+    
+    On Windows, if output was truncated, vsnprintf() does not return
+    the number of characters which would have been written to the string
+    if enough space had been available.
+    
+    To work around this, use _vcsprintf() instead.
+
+ configure.ac               | 2 ++
+ libspectre/spectre-utils.c | 8 +++++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+commit 5f261f571d1cd6bbd6dd12ca5eacb0edc79ebc06
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Dec 11 14:05:21 2009 +0100
+
+    Skip documents in the Prolog like Resource-Font
+    
+    Fixes bug #25573.
+
+ libspectre/ps.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+commit 889996f195d0a432f1e2a72645d6700aab96764c
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Oct 19 21:04:11 2009 +0200
+
+    fix some warnings of sscanf scanning signed but ending up in unsigned
+
+ libspectre/ps.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit fb787ddb26d471707f036e72e27a095976b8ee2a
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Oct 19 21:03:24 2009 +0200
+
+    commit some more warning flags
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5acf95a74ec2e4940818a50e59e50f5ec1175b39
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Oct 18 16:52:00 2009 +0200
+
+    Update for release 0.2.3
+
+ NEWS         | 27 +++++++++++++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 29 insertions(+), 2 deletions(-)
+
+commit a25264c609f2d2cc6a837aef6744f58a5f04064f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Oct 18 16:15:30 2009 +0200
+
+    Use git tag instead of deprecated git-tag
+
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8430f85ec06e946ac213cda3ad565f12ae7985af
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 10 12:47:15 2009 +0200
+
+    Remove internal copy of ghostscript headers
+    
+    They should be intalled by ghostscript since version 8.62.
+
+ configure.ac                       |   1 -
+ libspectre/Makefile.am             |   2 -
+ libspectre/ghostscript/Makefile.am |   4 -
+ libspectre/ghostscript/gdevdsp.h   | 266 --------------------------------
+ libspectre/ghostscript/iapi.h      | 300 -------------------------------------
+ libspectre/ghostscript/ierrors.h   | 153 -------------------
+ 6 files changed, 726 deletions(-)
+
+commit 24d97577878a227f1bef88a348f7ac329c5d57ba
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 10 12:41:17 2009 +0200
+
+    Bump gs requirement to 8.62
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 40c65518c160e501f890863827074d11aa72ee7f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 10 11:44:47 2009 +0200
+
+    [psgetpagebbox] return true if any of the coords are != 0 instead of all of them
+    
+    Fixes bug #24132.
+
+ libspectre/ps.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 077182e1fe53131d7c88cc1a0f278403e60bdc32
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Sep 11 11:49:02 2009 +0200
+
+    Add missing first argument in exporter pdf
+
+ libspectre/spectre-exporter-pdf.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 0956b7efc4bec37fd8483e1fac0b710c66bd42cb
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Sep 6 11:08:56 2009 +0200
+
+    Revert "Skip nested documents that don't have BeginDocument and EndDocument but have %PS and %%EOF"
+    
+    This reverts commit d2a3abcc066330f893fa53dee8ad71dbc452d95a. This is
+    causing other bugs (see bug #23456) and it doesn't seem to be fixing
+    anything important.
+
+ libspectre/ps.c | 17 -----------------
+ 1 file changed, 17 deletions(-)
+
+commit 724d7e41a2d54ec4a23e68622bc1a2926e3d677e
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Jun 16 17:04:35 2009 +0200
+
+    Run ghostscript always with -dSAFER option
+
+ libspectre/spectre-device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 89d7727b2a356a0de166a3072d3240249692210b
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Apr 21 11:01:24 2009 +0200
+
+    Fix documents with PJL commands before the initial DSC comments
+    
+    When using readline to skip the PJL commands, the whole document is
+    skipped because readline considers %PS comments as a nested document. We
+    need to unconditionally skip the lines until the first DSC command is
+    found and continue with the parsing normally.
+
+ libspectre/ps.c | 41 ++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 40 insertions(+), 1 deletion(-)
+
+commit 93d6425bf323b2f0c7846a179e7b77de4d64eab9
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Apr 19 17:01:49 2009 +0200
+
+    Make sure document media struct contents are never used uninitialized
+    
+    Based on a patch by Alexander Myltsev <avm@altlinux.org>. See bug #18685
+
+ libspectre/ps.c | 57 +++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 31 insertions(+), 26 deletions(-)
+
+commit 42df22b63cafbb4f7f9aa1e3ddc4df61a71a072b
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Apr 19 15:47:01 2009 +0200
+
+    Improve detection of invalid PS files
+    
+    A document scanned without errors with no pages and no format is likely
+    to be an invalid file, or not a PostScript file at all. Since this
+    cannot be detected by the scanner, in this particular case, we try to
+    render the document to set SPECTRE_STATUS_LOAD_ERROR in case it fails to
+    render. Fixes bug #19042.
+
+ libspectre/spectre-document.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+commit 38d9d955cf7a6baed877331d60837d9ce1b853c3
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Mar 22 17:43:06 2009 +0100
+
+    Fix error handling of gsapi_run_* functions
+
+ libspectre/spectre-gs.c | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+commit 6bc295778c964e320e126b5d20f701a1e21c9847
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 25 17:21:38 2008 +0100
+
+    Update for release 0.2.2
+
+ NEWS         | 14 ++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+commit b3886dd89f7a3394eed2c9e574909646b6024197
+Author: Alexander Myltsev <avm@altlinux.org>
+Date:   Mon Nov 24 09:21:13 2008 +0300
+
+    ps.c: malloc + memset -> calloc
+
+ libspectre/ps.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 52fa52f93943a6154cf2ac9b473d6b4948d75a15
+Author: Alexander Myltsev <avm@altlinux.org>
+Date:   Mon Nov 24 07:58:55 2008 +0300
+
+    spectre-device.c: fix warning.
+
+ libspectre/spectre-device.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 397266cb2a209122c34b8c0f57e63b45f6924b22
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 25 15:31:37 2008 +0100
+
+    Parse floats in a locale-independent way
+    
+    Fixes bug #18685. Instead of using %f when parsing floats with
+    sscanf %s is used, and the resulting string is then converted
+    to a float by using _spectre_strtod which is locale-independent.
+
+ libspectre/ps.c | 57 ++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 32 insertions(+), 25 deletions(-)
+
+commit deded1a671fd8d76ed9920efa9747912bdcd01df
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 25 15:28:59 2008 +0100
+
+    Add _spectre_strtod to spectre utils
+    
+    Copied from glib g_strtod(), a thread-safe locale-independent version
+    of the standard strtod().
+
+ libspectre/spectre-utils.c | 124 +++++++++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-utils.h |  18 ++++---
+ 2 files changed, 134 insertions(+), 8 deletions(-)
+
+commit 1e1c9ae337489aef9b8d2db77c615ad18e29bec1
+Author: Alexander Myltsev <avm@altlinux.org>
+Date:   Tue Nov 25 14:57:01 2008 +0100
+
+    ps.c: extract the scan_boundingbox function.
+
+ libspectre/ps.c | 167 ++++++++++++++------------------------------------------
+ 1 file changed, 41 insertions(+), 126 deletions(-)
+
+commit afc775659bb577a059a3e8b33cb3849a7f2075df
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 24 19:59:18 2008 +0100
+
+    Only translate when the page box is the bounding box
+    
+    Fixes bug #18239
+
+ libspectre/spectre-gs.c | 53 ++++++++++++++++++++++++-------------------------
+ 1 file changed, 26 insertions(+), 27 deletions(-)
+
+commit 3daba8d3926d816bdfdb205ddd3b0a69f869125e
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 24 19:58:23 2008 +0100
+
+    Add a (private) function to get the BoundingBox of a page
+
+ libspectre/ps.c | 58 +++++++++++++++++++++++++++++++++++++--------------------
+ libspectre/ps.h | 11 +++++++++++
+ 2 files changed, 49 insertions(+), 20 deletions(-)
+
+commit e72e663cf333a88ec0dcfc3b8aaf79c93a783295
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Tue Oct 28 12:10:46 2008 +0000
+
+    Ensure row-alignment match pixman's requirments
+    
+    pixman requires a row-alignment of 4 bytes, so we need to inform gs to
+    create a memory device matching that requirement.
+
+ libspectre/spectre-device.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 22a3be83641df53dbbb81c8c6f3e072d4eb72624
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Aug 10 16:31:33 2008 +0200
+
+    Update for release 0.2.1
+
+ NEWS         | 25 +++++++++++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 27 insertions(+), 2 deletions(-)
+
+commit 3529b5d06b30ee88b431cdf216cc48088bc83a13
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Aug 9 16:24:18 2008 +0200
+
+    Fix a signed/unsigned comparison warning.
+
+ libspectre/ps.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 0f473e02c50b9127a89e6cbf8f502d1e5e808fa4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Aug 9 16:13:25 2008 +0200
+
+    Set document status to LOAD_ERROR when an invalid file is given.
+
+ libspectre/spectre-document.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 64ad7f8b6b515ccfb87453f986eb1f1ebe6da94f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Aug 7 13:32:15 2008 +0200
+
+    Do not include config.h if HAVE_CONFIG_H is not defined
+
+ libspectre/spectre-utils.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit b1f1a09a0c85bec5b728c5165414cccb05132038
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Aug 7 13:27:57 2008 +0200
+
+    Make spectre_strdup_vprintf compatible with platforms where vasprintf is not present
+
+ configure.ac               | 89 +++++++++++++++++++++++++++++++++++++++++++++-
+ libspectre/spectre-utils.c | 22 ++++++++++--
+ libspectre/spectre-utils.h | 14 ++++++++
+ 3 files changed, 122 insertions(+), 3 deletions(-)
+
+commit 37cc015570ebc72b05b7a3a894a9fbff4cf9b05b
+Author: ecyrbe <ecyrbe@gmail.com>
+Date:   Thu Aug 7 10:41:47 2008 +0200
+
+    Implement _spectre_get_pid for win32
+
+ libspectre/spectre-utils.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit caa25241dff4de6832bf511a31c45f92b8452f35
+Author: ecyrbe <ecyrbe@gmail.com>
+Date:   Wed Aug 6 10:55:55 2008 +0200
+
+    Add 'b' to the mode string in fopen for win32 compatibility.
+
+ libspectre/ps.c                  | 4 ++--
+ libspectre/spectre-document.c    | 4 ++--
+ libspectre/spectre-exporter-ps.c | 4 ++--
+ libspectre/spectre-gs.c          | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
+
+commit c17c602cf494ee2b280f3e2ea09346a08000d61d
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Aug 5 13:03:15 2008 +0200
+
+    Support DOS EPS files in order to ignore the preview stuff
+    
+    Based on changes made by Russell Lang for GSview.
+    Fixes bug #16810
+
+ libspectre/ps.c | 166 ++++++++++++++++++++++++++++++++++++++++++++++----------
+ libspectre/ps.h |  16 ++++++
+ 2 files changed, 153 insertions(+), 29 deletions(-)
+
+commit 0196965f9c09e0b3bbfff847c3aed16b59be959f
+Author: Benjamin Jacobs <benja@myrealbox.com>
+Date:   Sun Jul 13 18:14:12 2008 +0200
+
+    Fix bytes order on big endian
+
+ configure.ac                | 1 +
+ libspectre/spectre-device.c | 7 ++++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit 3852ec05b8375ac439d9bde13f959068bfb481d7
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jun 19 19:41:09 2008 +0200
+
+    Fix documents that have Special as PageOrder
+
+ libspectre/spectre-gs.c | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
+
+commit e94803d2f35e9b96bc11583603ad6ee9ae49bd11
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jun 19 18:43:13 2008 +0200
+
+    Work around in the parser for some buggy mozilla generated documents
+    
+    See bug #14384 for further info
+
+ libspectre/ps.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit f07b30aa8faa8166530256b97c301861419c35b9
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jun 19 18:37:53 2008 +0200
+
+    Add a new test program to test and debug the PostScript parser
+
+ test/Makefile.am   |  5 +++-
+ test/parser-test.c | 84 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 88 insertions(+), 1 deletion(-)
+
+commit d97b367b94de69794a6f3e4b4c0b4de26320fba0
+Author: Diego 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Date:   Thu Jun 19 10:59:50 2008 +0200
+
+    Mark the media table constant
+
+ libspectre/ps.c | 2 +-
+ libspectre/ps.h | 5 +++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 74380315b07922807a6ce655169211b26e6c2711
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Jun 16 20:30:05 2008 +0200
+
+    Take into account the document page order when getting a page by its index
+
+ libspectre/spectre-document.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+commit a3a32f0a024c2bc333127abb9d1cad08331ceb5b
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Mar 22 15:55:51 2008 +0100
+
+    Do not consider PS-AdobeFont comments as begining of a nested document
+
+ libspectre/ps.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 30370d540c8b8eafee369b9fe08a821fe6d3a9a8
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Mar 1 11:54:22 2008 +0100
+
+    ignore spectre-version.h
+
+ libspectre/.gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a43dfa9f0f3a0698e01b37fdabf2d728992ceb2f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Feb 3 13:10:16 2008 +0100
+
+    Fix more compile warnings.
+
+ libspectre/ps.c | 37 ++++++++++++++++++-------------------
+ 1 file changed, 18 insertions(+), 19 deletions(-)
+
+commit cc0d4bbacc40f22e14ae4ab0401da61c552df20d
+Author: Diego 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Date:   Sun Feb 3 12:48:06 2008 +0100
+
+    Mark spectre_device structure constant.
+
+ libspectre/spectre-device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 86a14c247ee373f07013939ff7a13c609adb0a95
+Author: Diego 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Date:   Sun Feb 3 12:42:41 2008 +0100
+
+    Shut up a couple signed/unsigned comparison warnings.
+
+ libspectre/ps.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3c84ab911e8691ecedc9e5c33e0fa8b948204016
+Author: Diego 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Date:   Sun Feb 3 12:40:29 2008 +0100
+
+    Mark the media table constant.
+
+ libspectre/ps.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 7ae2127f48081e1acdc2efd7b35843b4616b9444
+Author: Diego 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Date:   Sun Feb 3 12:20:45 2008 +0100
+
+    Properly mark automake as foreign.
+
+ Makefile.am | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 69e0d018e0316a8fa2cb2c50931616d6c1457e16
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Jan 12 19:31:59 2008 +0100
+
+    Fix typo
+
+ libspectre/spectre-render-context.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 14e516b5e7257e46972c78945cec762325abf05e
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jan 3 17:23:51 2008 +0100
+
+    Update for release 0.2.0
+
+ NEWS         | 25 +++++++++++++++++++++++++
+ configure.ac |  6 +++---
+ 2 files changed, 28 insertions(+), 3 deletions(-)
+
+commit c81214f5bf9c2340d9af8f047adf166d824fc09f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jan 3 17:16:51 2008 +0100
+
+    Fix a typo
+
+ libspectre/spectre-page.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e541782831f43731b0b0820a487becef088d6bf7
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Jan 3 10:35:26 2008 +0100
+
+    Add spectre_document_get_page_size instead of returning page size in document_render funcs
+
+ libspectre/spectre-document.c | 53 ++++++++++++++++++++++++++-----------------
+ libspectre/spectre-document.h | 14 ++++++++----
+ test/spectre-test.c           | 50 ++++++++++++++++++++++++++++++++++++++--
+ 3 files changed, 90 insertions(+), 27 deletions(-)
+
+commit 7ef5479d0ff3783d3b416a3e70f69a853e0fa6d5
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Jan 2 14:02:12 2008 +0100
+
+    Do not add x, y offset twice in multi-page documents
+    
+    Fixes tile rendering in documents like tiger.ps
+
+ libspectre/spectre-gs.c | 12 ++++++++++--
+ test/spectre-test.c     |  1 -
+ 2 files changed, 10 insertions(+), 3 deletions(-)
+
+commit 0bdbc8287aa4fb397babd47f0744d077c271f986
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Jan 2 13:28:18 2008 +0100
+
+    Cache page size
+
+ libspectre/spectre-page.c | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
+
+commit 8c881e8b3942c703dd6c5b551afb4f1fcdb233f4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Jan 2 13:21:09 2008 +0100
+
+    Add spectre_document_render and spectre_document_render_full
+
+ TODO                          |  2 +-
+ libspectre/spectre-document.c | 61 +++++++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-document.h | 34 ++++++++++++++++++++++++
+ test/spectre-test.c           | 35 +++++++++++++++++++++++++
+ 4 files changed, 131 insertions(+), 1 deletion(-)
+
+commit d63bd29ec639dd670d03022ba1674b2caab5175d
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 23 16:20:35 2007 +0100
+
+    Change get/set_scale to get/set the scale factor for both X and Y dimensions
+
+ libspectre/spectre-device.c         | 13 ++++---------
+ libspectre/spectre-private.h        |  3 ++-
+ libspectre/spectre-render-context.c | 22 +++++++++++++++-------
+ libspectre/spectre-render-context.h | 20 +++++++++++++-------
+ 4 files changed, 34 insertions(+), 24 deletions(-)
+
+commit c69e57072d1a8554ba98a01ec1c2e12a346f442c
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 23 12:30:03 2007 +0100
+
+    Compile test also with all warnings and fix some of them.
+
+ test/Makefile.am    | 1 +
+ test/spectre-test.c | 6 +++---
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 778c78864a4233f8f27575e9ff40e3323744dad2
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 23 12:25:55 2007 +0100
+
+    Update documentation
+
+ libspectre/spectre-page.h           | 13 +++++++++++++
+ libspectre/spectre-render-context.h |  4 +++-
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+
+commit 6e8bf5d5097f902c447fb3037d139febcac036e9
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 23 12:10:17 2007 +0100
+
+    Add spectre_page_render_slice to render only a rectangle of the page.
+    
+    Fixes bug #13754.
+
+ libspectre/spectre-device.c       | 71 ++++++++++++++--------------
+ libspectre/spectre-device.h       |  4 ++
+ libspectre/spectre-exporter-pdf.c |  2 +-
+ libspectre/spectre-gs.c           | 10 ++--
+ libspectre/spectre-gs.h           |  4 +-
+ libspectre/spectre-page.c         | 32 ++++++++++++-
+ libspectre/spectre-page.h         |  9 ++++
+ test/spectre-test.c               | 98 +++++++++++++++++++++++++++++++++++++++
+ 8 files changed, 187 insertions(+), 43 deletions(-)
+
+commit 714b36d48ed42fc8a45424957b135ee3f23fee31
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Dec 21 13:21:59 2007 +0100
+
+    Update docs
+
+ libspectre/spectre-page.h           | 8 +++++---
+ libspectre/spectre-render-context.h | 4 +++-
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+commit 995787d096d6b5c955f2ea6e8ca6f273e7441118
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Dec 17 18:34:26 2007 +0100
+
+    We need to increment libspectre version before running make distcheck
+
+ RELEASING | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+commit c13f45aefef396cc232939a455fda22fc5855290
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 16 17:24:46 2007 +0100
+
+    Update for release 0.1.0
+
+ NEWS         | 4 ++++
+ configure.ac | 4 ++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 3c57e6d71491c1001c61947a006f33cb17d4e0bd
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 16 17:10:42 2007 +0100
+
+    Add scripts and instructions for releasing, based on cairo release system
+
+ Makefile.am | 123 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ RELEASING   | 101 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 219 insertions(+), 5 deletions(-)
+
+commit 764c681fa2fa0bc91f8b7ba535b5fc2b35ae4b25
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 16 16:39:48 2007 +0100
+
+    Write README file
+
+ README | 33 +++++++++++++++++++++++++++++++++
+ TODO   |  2 +-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+
+commit 9c2b70d1edc95bc3b86c2bd1ef6e856d8f0e6d65
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Dec 15 18:26:28 2007 +0100
+
+    Use Doxyfile.in instead of Doxyfile and update it
+
+ Doxyfile => Doxyfile.in | 29 ++++++++++++++++-------------
+ configure.ac            |  4 ++++
+ 2 files changed, 20 insertions(+), 13 deletions(-)
+
+commit a45cf18b80c044f68061d54837ca361131e8a070
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Dec 15 17:48:47 2007 +0100
+
+    Doxyfile for giving doxygen on how to generate docu
+
+ Doxyfile | 244 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 244 insertions(+)
+
+commit a7a4d056adc742c8edfa9923a24c2abc71cdf8f1
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Dec 10 19:42:43 2007 +0100
+
+    dummy commit to see if i got rights
+
+ TODO | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit da5ef29ee05eaca46d588e5c46c6f0120a5ca228
+Merge: 0f85e0a d53d9fc
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Dec 9 20:34:17 2007 +0100
+
+    Merge branch 'master' of ssh://aacid@git.freedesktop.org/git/libspectre
+
+commit d53d9fc01133e8a24fa716b4b3296904fe5ae9bb
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 9 19:46:43 2007 +0100
+
+    Make libspectre require libgs >= 8.61
+
+ configure.ac | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+commit 0f85e0aede7bad490433f982163b8184dabbed28
+Merge: 708c652 3d2c0fd
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Dec 9 19:15:55 2007 +0100
+
+    Merge branch 'master' of ssh://aacid@git.freedesktop.org/git/libspectre
+
+commit 3d2c0fd90a796c5fd40acf053e3e3b57357a017c
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 9 18:29:28 2007 +0100
+
+    Update TODO
+
+ TODO | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 6229b9665ff4c93ad75195f8f33e4745d6f3a0d4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 9 18:26:55 2007 +0100
+
+    Add macros to allow getting information about libspectre version from clients
+
+ configure.ac                    |  1 +
+ libspectre/Makefile.am          |  5 ++++-
+ libspectre/spectre-version.h.in | 38 ++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre.h            |  1 +
+ test/spectre-test.c             |  2 ++
+ 5 files changed, 46 insertions(+), 1 deletion(-)
+
+commit 708c6525124c3c6a4ecd82caabf6d8358b5469cc
+Merge: 41ee378 43024fb
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Dec 9 18:07:46 2007 +0100
+
+    Merge branch 'master' of ssh://aacid@git.freedesktop.org/git/libspectre
+
+commit 43024fb54e14181ac8fbe5c68810ba1a012756c6
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Dec 9 17:57:42 2007 +0100
+
+    Add .gitignore files
+
+ .gitignore            | 19 +++++++++++++++++++
+ libspectre/.gitignore |  4 ++++
+ test/.gitignore       |  4 ++++
+ 3 files changed, 27 insertions(+)
+
+commit a94bb48a45a5b14cf6d7457138363e5057a78269
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 9 18:05:53 2007 +0100
+
+    Add libtool versioning stuff to configure.ac
+
+ configure.ac           | 45 ++++++++++++++++++++++++++++++++++++++++++++-
+ libspectre/Makefile.am |  2 +-
+ 2 files changed, 45 insertions(+), 2 deletions(-)
+
+commit 41ee3787b032421986c44845c72cb26d0512b0c5
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Dec 9 17:57:42 2007 +0100
+
+    Add .gitignore files
+
+ .gitignore            | 19 +++++++++++++++++++
+ libspectre/.gitignore |  4 ++++
+ test/.gitignore       |  4 ++++
+ 3 files changed, 27 insertions(+)
+
+commit f1d8d85556bfd7ac4efd78d0dbc1f65180e45565
+Merge: d216ccd c04b5db
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Dec 9 17:27:54 2007 +0100
+
+    Merge branch 'master' of ssh://aacid@git.freedesktop.org/git/libspectre
+
+commit c04b5db53e4447f861f58e074cab12843ba95531
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Dec 9 16:20:32 2007 +0100
+
+    Fix memory leak
+
+ libspectre/spectre-exporter.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3fe829cbad56bfdc84f87b96ea3e72d76c0482b1
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Dec 8 18:00:29 2007 +0100
+
+    Fix SpectreOrientation enum items order
+
+ libspectre/spectre-page.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit d2a3abcc066330f893fa53dee8ad71dbc452d95a
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Dec 8 17:40:47 2007 +0100
+
+    Skip nested documents that don't have BeginDocument and EndDocument but have %PS and %%EOF
+
+ libspectre/ps.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 3c90fb679d3654dcee6ced40030ba7730dd10fac
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Dec 8 15:18:42 2007 +0100
+
+    Add library version info
+
+ libspectre/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d216ccd6d245f4be51675b42887f19ce2161b90a
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Dec 8 13:01:29 2007 +0100
+
+    Typo--
+
+ TODO | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 182697ecefc0e72527e45b7c2d5b2059300831d7
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Dec 8 12:56:21 2007 +0100
+
+    Handle ghostscript stdout
+
+ libspectre/spectre-gs.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+commit 6f77c1859e75ab5814e80103723356650fe25c3c
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Dec 7 11:23:58 2007 +0100
+
+    Add assert and check functions
+
+ TODO                                |   6 +-
+ configure.ac                        |  18 ++++++
+ libspectre/ps.c                     |   5 +-
+ libspectre/spectre-document.c       |  54 ++++++++++++++++
+ libspectre/spectre-exporter.c       |  11 +++-
+ libspectre/spectre-page.c           |  15 ++++-
+ libspectre/spectre-render-context.c |  41 +++++--------
+ libspectre/spectre-utils.c          | 119 ++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-utils.h          |  81 +++++++++++++++++++++++-
+ test/spectre-test.c                 |   2 +
+ 10 files changed, 316 insertions(+), 36 deletions(-)
+
+commit f553a5ba63cfc1e44bdf07979be1233a6ba5c9fb
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 26 16:20:47 2007 +0100
+
+    Revert a change committed by mistake
+
+ libspectre/spectre-device.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 6fd512eac8bb503a520f1ffe9ecd4c4bd6690de4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 26 11:55:39 2007 +0100
+
+    Add a Makefile.am to ghostscript dir in order to make it distribuible
+
+ Makefile.am                        | 2 +-
+ TODO                               | 2 +-
+ configure.ac                       | 1 +
+ libspectre/Makefile.am             | 2 ++
+ libspectre/ghostscript/Makefile.am | 4 ++++
+ libspectre/spectre-device.c        | 2 +-
+ libspectre/spectre-gs.c            | 4 ++--
+ 7 files changed, 12 insertions(+), 5 deletions(-)
+
+commit 68a5c9b2b9f94a203232960793e6cbfd29181b27
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 26 10:52:48 2007 +0100
+
+    Add -sDEVICE=display to spectre device arguments list
+    
+    Before libgs 8.61 display was the default device, so that we didn't need to
+    specify it. However since libgs 8.61 x11 is the default device and it's used
+    when no device is specified.
+
+ libspectre/spectre-device.c | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
+
+commit 4be9e3eff04b979368892cabcc5b32c03a0a3ac4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 12 21:05:50 2007 +0100
+
+    Do not translate twice when document BBox == PageBBox
+
+ libspectre/spectre-gs.c | 29 +++++++++++++++++++++++------
+ 1 file changed, 23 insertions(+), 6 deletions(-)
+
+commit f3e8df3c4547195954f3c16597d23d073febfcb2
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 12 14:43:02 2007 +0100
+
+    Apply debian patch 299447and433898-nested-eps
+    
+    See gv bug http://savannah.gnu.org/bugs/?20752
+
+ libspectre/ps.c | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
+
+commit d30c9cdf18a87d43c53210be789e6a9b0c67f100
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 12 14:12:32 2007 +0100
+
+    Fix a crash when trying to get the page label in non structured documents
+
+ libspectre/spectre-page.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c80ced3b48e8bac6ba5b0a554c466c0b0737d377
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 8 12:24:31 2007 +0100
+
+    Add spectre_document_get_by_label
+
+ libspectre/spectre-document.c | 27 +++++++++++++++++++++++++++
+ libspectre/spectre-document.h |  9 +++++++++
+ test/spectre-test.c           | 11 ++++++++++-
+ 3 files changed, 46 insertions(+), 1 deletion(-)
+
+commit d9f39c9aed2543a3b8142cd5bd6c93b978a14bf0
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 8 12:06:53 2007 +0100
+
+    Add spectre_page_get_label
+
+ libspectre/spectre-page.c | 6 ++++++
+ libspectre/spectre-page.h | 5 +++++
+ test/spectre-test.c       | 6 ++++--
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
+commit bac7b503fc5b6ddc451fbcd28797be5ed1b307c8
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 8 10:43:09 2007 +0100
+
+    malloc needs #include <stdlib.h>
+
+ libspectre/spectre-utils.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 4b8bea962dc5b5f9a048f00070ee91a2f5d9873e
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Nov 7 13:03:08 2007 +0100
+
+    Pass BBox coords to spectre_gs_process when sending page contents to gs
+    
+    Fixes test case no-left-turns.ps
+
+ libspectre/spectre-gs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c881467b74aec8e1b6988fc94b613366932f4d4a
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 6 12:23:32 2007 +0100
+
+    Fix a crash in test when exporter fails
+
+ test/spectre-test.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 99c2311f470900798d283cc138325af92161dfb9
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 6 12:06:49 2007 +0100
+
+    Add spectre_document_save_to_pdf
+
+ libspectre/spectre-document.c | 48 ++++++++++++++++++++++++++++++++++++++++++-
+ libspectre/spectre-document.h |  8 +++++++-
+ test/spectre-test.c           | 23 +++++++++++++++++++++
+ 3 files changed, 77 insertions(+), 2 deletions(-)
+
+commit 8f14a557158bb33d610a5493401a2b8a02fec1d5
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 6 11:24:22 2007 +0100
+
+    Handle errors in spectre_exporter_ps_begin
+
+ libspectre/spectre-exporter-ps.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit 6bfbffda58456ee228bc87bda6681049b96382c4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Tue Nov 6 11:23:40 2007 +0100
+
+    Add spectre_document_save
+
+ TODO                          |  7 ++++---
+ libspectre/ps.c               | 10 ++++++++++
+ libspectre/ps.h               | 10 ++++++++++
+ libspectre/spectre-document.c | 40 ++++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-document.h |  7 +++++++
+ libspectre/spectre-status.c   |  2 ++
+ libspectre/spectre-status.h   |  4 +++-
+ test/spectre-test.c           | 18 +++++++++++++++++-
+ 8 files changed, 93 insertions(+), 5 deletions(-)
+
+commit a7fdd1340bb0edeaaf57db1a7698ffbaa974848d
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 5 17:09:15 2007 +0100
+
+    Add lots of warning flags for gcc and compatible compilers. Fix some compile warnings.
+
+ configure.ac            | 71 ++++++++++++++++++++++++++++++++++++++++++++++++-
+ libspectre/Makefile.am  |  4 ++-
+ libspectre/ps.c         | 26 +++++++++---------
+ libspectre/spectre-gs.c |  2 +-
+ 4 files changed, 86 insertions(+), 17 deletions(-)
+
+commit 0e87354d2be1f3307cc0b3ad8dc2b6e03c7225cc
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Nov 5 16:38:38 2007 +0100
+
+    Add our own implementation of strdup, strncasecmp and strcasecmp since they are not ansic
+
+ libspectre/spectre-utils.c | 60 ++++++++++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-utils.h |  6 +++++
+ 2 files changed, 66 insertions(+)
+
+commit ab27ac85714502846c72926fbeba263a1ede6bfc
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Nov 5 10:18:35 2007 +0100
+
+    Update COPYING and FSF address
+
+ COPYING                             | 27 +++++++++++++--------------
+ libspectre/ps.c                     |  4 ++--
+ libspectre/ps.h                     |  4 ++--
+ libspectre/spectre-device.c         |  2 +-
+ libspectre/spectre-device.h         |  2 +-
+ libspectre/spectre-document.c       |  2 +-
+ libspectre/spectre-document.h       |  2 +-
+ libspectre/spectre-exporter-pdf.c   |  2 +-
+ libspectre/spectre-exporter-ps.c    |  2 +-
+ libspectre/spectre-exporter.c       |  2 +-
+ libspectre/spectre-exporter.h       |  2 +-
+ libspectre/spectre-gs.c             |  2 +-
+ libspectre/spectre-gs.h             |  2 +-
+ libspectre/spectre-macros.h         |  2 +-
+ libspectre/spectre-page.c           |  2 +-
+ libspectre/spectre-page.h           |  2 +-
+ libspectre/spectre-private.h        |  2 +-
+ libspectre/spectre-render-context.c |  2 +-
+ libspectre/spectre-render-context.h |  2 +-
+ libspectre/spectre-status.c         |  2 +-
+ libspectre/spectre-status.h         |  2 +-
+ libspectre/spectre-utils.c          |  2 +-
+ libspectre/spectre-utils.h          |  2 +-
+ libspectre/spectre.h                |  2 +-
+ 24 files changed, 38 insertions(+), 39 deletions(-)
+
+commit 3419a054fc916aff188582bbaa5cee1f80778b43
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Nov 4 20:44:26 2007 +0100
+
+    Add SpectreExporter to export to PS and PDF
+
+ libspectre/Makefile.am            |   9 +-
+ libspectre/ps.c                   |  80 ++++++++++++
+ libspectre/ps.h                   |  27 ++++
+ libspectre/spectre-device.c       | 217 ++++---------------------------
+ libspectre/spectre-document.c     |   6 +
+ libspectre/spectre-exporter-pdf.c | 105 +++++++++++++++
+ libspectre/spectre-exporter-ps.c  |  80 ++++++++++++
+ libspectre/spectre-exporter.c     | 100 +++++++++++++++
+ libspectre/spectre-exporter.h     |  49 +++++++
+ libspectre/spectre-gs.c           | 261 ++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-gs.h           |  56 ++++++++
+ libspectre/spectre-private.h      |  29 ++++-
+ libspectre/spectre-status.c       |   2 +
+ libspectre/spectre-status.h       |   4 +-
+ libspectre/spectre.h              |   1 +
+ test/spectre-test.c               |  44 +++++++
+ 16 files changed, 877 insertions(+), 193 deletions(-)
+
+commit 6e5849a2ab3143ecf78c7ee1b1df405429a3d946
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Nov 4 13:06:33 2007 +0100
+
+    First step for documenting the public api
+
+ TODO                                |  2 +-
+ libspectre/spectre-document.h       | 72 +++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-page.h           | 42 +++++++++++++++++++---
+ libspectre/spectre-render-context.c |  1 -
+ libspectre/spectre-render-context.h | 70 ++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-status.h         | 25 +++++++++----
+ 6 files changed, 200 insertions(+), 12 deletions(-)
+
+commit b750675f315b5325ccdaeed279cd449376d9898b
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Nov 4 13:03:26 2007 +0100
+
+    Add spectre_document_get_for
+
+ libspectre/ps.c               |  3 +++
+ libspectre/ps.h               |  1 +
+ libspectre/spectre-document.c | 11 +++++++++++
+ libspectre/spectre-document.h |  1 +
+ test/spectre-test.c           |  2 ++
+ 5 files changed, 18 insertions(+)
+
+commit 8c925ad2176507d03817c7f7b9e5b2921608ace4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Nov 3 15:31:12 2007 +0100
+
+    Add spectre_document_get_creation_date
+
+ libspectre/spectre-document.c | 13 ++++++++++++-
+ libspectre/spectre-document.h |  1 +
+ test/spectre-test.c           |  2 ++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
+
+commit 07e13606894b22a8750356b72b58e4c02e6e5cd3
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Nov 3 12:58:47 2007 +0100
+
+    Add spectre_document_get_format
+
+ libspectre/ps.c               | 14 +++++++++-----
+ libspectre/ps.h               |  1 +
+ libspectre/spectre-document.c | 11 +++++++++++
+ libspectre/spectre-document.h |  1 +
+ test/spectre-test.c           |  5 +++++
+ 5 files changed, 27 insertions(+), 5 deletions(-)
+
+commit 77d2715386c92aa04fb659e00cf187c0b106e816
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Nov 3 12:36:54 2007 +0100
+
+    Add tests for is_eps and get_language_level
+
+ test/spectre-test.c | 27 ++++++++++++++++++---------
+ 1 file changed, 18 insertions(+), 9 deletions(-)
+
+commit 6c3d6bc2ec6db0dfed1fe5bb1765603b9f4495c2
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Nov 3 12:28:34 2007 +0100
+
+    Init ghostscript_instance to NULL as libgs checks its value
+
+ libspectre/spectre-device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1d19056eaba47a848a1b3175cd094df7d0b99f24
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Nov 3 12:20:18 2007 +0100
+
+    Added spectre_document_get_language_level
+
+ libspectre/ps.c               |  3 +++
+ libspectre/ps.h               |  1 +
+ libspectre/spectre-document.c | 11 +++++++++++
+ libspectre/spectre-document.h | 27 ++++++++++++++-------------
+ 4 files changed, 29 insertions(+), 13 deletions(-)
+
+commit e702c34bccbc70ba209eba4d0ae8301d40164665
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Nov 3 12:06:44 2007 +0100
+
+    Add spectre_document_is_eps
+
+ libspectre/spectre-document.c | 11 +++++++++++
+ libspectre/spectre-document.h |  1 +
+ 2 files changed, 12 insertions(+)
+
+commit 92273d6238f9240e6d11abe9984c98754a78fc0c
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Nov 2 18:24:16 2007 +0100
+
+    Calculate scale factor when not provided
+
+ libspectre/spectre-device.c | 39 +++++++++++++++++++++++++--------------
+ 1 file changed, 25 insertions(+), 14 deletions(-)
+
+commit d9a291ef8230d607d9f5e8adac1e13ee6296e383
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Nov 2 15:47:57 2007 +0100
+
+    Fix a crash when rendering rotated. Add rotation test.
+
+ libspectre/spectre-device.c | 41 ++++++++++++++---------------
+ test/spectre-test.c         | 64 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 84 insertions(+), 21 deletions(-)
+
+commit c9e069b1ee62590efbe0b530e5b08a29873dff38
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Fri Nov 2 11:20:51 2007 +0100
+
+    Ignore update calls after page
+
+ libspectre/spectre-device.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit a023134a97124919690c82b8330e647f8bce5ab2
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Fri Nov 2 11:11:47 2007 +0100
+
+    Fix crashes on documents that never call page
+
+ libspectre/spectre-device.c | 28 +++++++++++++++++++++++++---
+ 1 file changed, 25 insertions(+), 3 deletions(-)
+
+commit 411a940bd498c0af8246533d40950e0e10e63222
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 1 17:17:51 2007 +0100
+
+    Fix orientation issues, gs expects orientation not rotation.
+
+ libspectre/spectre-device.c         | 36 +++++++++++++++++++++++++-----------
+ libspectre/spectre-page.h           |  4 ++--
+ libspectre/spectre-private.h        | 18 +++++++++---------
+ libspectre/spectre-render-context.c | 28 +++++++++++++++++++++++++---
+ 4 files changed, 61 insertions(+), 25 deletions(-)
+
+commit 7545daaccade5b16dcaea5c4643eff42e5aa0346
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 1 16:05:19 2007 +0100
+
+    Add libs and cflags to libspectre.pc file
+
+ libspectre.pc.in | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit d956cf9ad243790481774ecec631b6e7d4fb35d7
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 1 16:04:49 2007 +0100
+
+    Fix a typo in Makefile.am
+
+ libspectre/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fb9a1722108d812e150046c06e2d4960c3562c36
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Nov 1 11:53:52 2007 +0100
+
+    Continue parsing files which don't have %PS instead of returning inmediately
+    
+    Fixes test cases fontlist2.ps, fractal-fern.ps, paper.ps and restest.ps
+
+ libspectre/ps.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 8557aaa6786d2cf631e2d03953e13b5a99db970c
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Thu Nov 1 11:39:59 2007 +0100
+
+    Do not check whether document is structured, just if it has pages
+    
+    Fixes test cases tiger.ps and virsim2.ps
+
+ libspectre/spectre-device.c | 3 +--
+ libspectre/spectre-page.c   | 4 +---
+ 2 files changed, 2 insertions(+), 5 deletions(-)
+
+commit 80f2957be9391caa78899f14a8c492e2015b7472
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Oct 31 13:06:55 2007 +0100
+
+    Init document filename for documents without %PS at the beginning
+
+ libspectre/ps.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d42da5b055af69900a459d35dbb4c6783639f71b
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Oct 31 12:56:47 2007 +0100
+
+    Init document ref_count for documents without %PS at the beginning
+    
+    Fixes the Assertion `doc->ref_count > 0' failed crash
+
+ libspectre/ps.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 7aaf78b972014a46af2c03f05f0305f6c0ee87b6
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Wed Oct 31 12:48:26 2007 +0100
+
+    Translate to the right coords when bounding box is not at 0,0.
+    
+    Fixes test case coverfig.ps
+
+ libspectre/spectre-device.c | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+
+commit 73f3ff3b834bde3b6aa78c5ab81b7a7def6affcb
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 21:23:02 2007 +0100
+
+    Fix check whether document is structured before trying to feed gs with page data
+
+ libspectre/spectre-device.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 13681de34af197a41d831cb3b8af0ed291ee9358
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Oct 29 21:06:36 2007 +0100
+
+    Feed document trailer to ghostscript too, fixes 46d333bb7fe46f90.ps
+
+ libspectre/spectre-device.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 3ffcc2e66f7d1421a867ccb81034670fa2d2a733
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 21:03:58 2007 +0100
+
+    Add document_get_orientation and page_get_orientation
+
+ libspectre/ps.c               | 32 ++++++++++++++++++++++++++------
+ libspectre/spectre-document.c | 26 ++++++++++++++++++++++++++
+ libspectre/spectre-document.h | 23 ++++++++++++-----------
+ libspectre/spectre-page.c     | 29 +++++++++++++++++++++++++++++
+ libspectre/spectre-page.h     | 30 +++++++++++++++++++-----------
+ test/spectre-test.c           | 21 +++++++++++++++++++++
+ 6 files changed, 133 insertions(+), 28 deletions(-)
+
+commit c164a79e7ce00961ce6cc2c347287e189192bf84
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 20:22:41 2007 +0100
+
+    Merge several fixes from evince and macgsview into ps.c
+
+ libspectre/ps.c | 60 ++++++++++++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 51 insertions(+), 9 deletions(-)
+
+commit 4134e1c4e765d23c2e1ed958642e823e95a0dda9
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 15:23:33 2007 +0100
+
+    EPS support
+
+ TODO                          |  2 +-
+ libspectre/spectre-device.c   | 20 +++++++++++---------
+ libspectre/spectre-document.c |  9 +++++++--
+ 3 files changed, 19 insertions(+), 12 deletions(-)
+
+commit d6d52888eff215287065a89ac1c427d320c07fbe
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 12:17:21 2007 +0100
+
+    Make spectre_device_cleanup static
+
+ libspectre/spectre-device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ef37d296279aff48a95a85e37116bc646f4b18a9
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 12:16:43 2007 +0100
+
+    Implement spectre_page_status and use it in tests
+
+ libspectre/spectre-page.c | 6 ++++++
+ test/spectre-test.c       | 8 +++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+commit a1003a2d7d483616a988ea0bbab2a5cdf574a764
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Mon Oct 29 12:16:12 2007 +0100
+
+    Fix order fo delete and exit in spectre_device_cleanup
+    
+    It should be first exit and then delete_instance. Otherwise it will crash.
+
+ libspectre/spectre-device.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit f1501a936991c13fcefd7806ac8639df6b942eb8
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Oct 29 11:44:55 2007 +0100
+
+    Set page status to renderer status in spectre_page_render
+
+ libspectre/spectre-device.c | 137 ++++++++++++++++++++++++++++++++------------
+ libspectre/spectre-device.h |   3 +-
+ libspectre/spectre-page.c   |   4 +-
+ libspectre/spectre-status.c |   2 +
+ libspectre/spectre-status.h |   3 +-
+ 5 files changed, 109 insertions(+), 40 deletions(-)
+
+commit 0aa1d2e4c47e1fb678e28fa60787a5c38a732b89
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Oct 29 11:13:33 2007 +0100
+
+    Use correct doxygen syntax for the comment
+
+ libspectre/spectre-device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit bc88df557348846f24f243223435094319a0839a
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Mon Oct 29 11:11:40 2007 +0100
+
+    Add setter and getter for RenderContext graphic_alpha_bits and text_alpha_bits
+
+ libspectre/spectre-render-context.c | 25 +++++++++++++++++++++++++
+ libspectre/spectre-render-context.h |  6 ++++++
+ 2 files changed, 31 insertions(+)
+
+commit a851081b8be2d5a3231d71d530a60b9ebf05fdd7
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Oct 28 22:38:41 2007 +0100
+
+    Add missing spectre-utils.h to Makefile.am
+
+ libspectre/Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 0e17690bd6dc7d35b99b664bba580c783f2f32aa
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Oct 28 22:35:49 2007 +0100
+
+    Add TODO file
+
+ TODO | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit ccb164d529eedafdf430a2bda3204dcd37b23736
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sun Oct 28 22:32:36 2007 +0100
+
+    Initialize use platform fonts as TRUE by default
+
+ libspectre/spectre-render-context.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit db648b204ddff8c9c8a236a1173b82d90eacdc61
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Oct 28 21:50:44 2007 +0100
+
+    Fix several memory leaks
+
+ libspectre/spectre-device.c | 46 +++++++++++++++++++++++++++++----------------
+ 1 file changed, 30 insertions(+), 16 deletions(-)
+
+commit 0134ff52ff543d1394be56a74136f0e81e74ce26
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Oct 28 20:55:32 2007 +0100
+
+    Use render context for rendering
+
+ libspectre/ps.h                     |  1 +
+ libspectre/spectre-device.c         | 66 +++++++++++++++++++------------------
+ libspectre/spectre-device.h         | 20 +++++------
+ libspectre/spectre-page.c           | 28 +++++-----------
+ libspectre/spectre-page.h           | 28 +++++++---------
+ libspectre/spectre-private.h        | 13 ++++++++
+ libspectre/spectre-render-context.c | 17 ++--------
+ libspectre/spectre.h                |  2 ++
+ test/spectre-test.c                 | 13 +++++---
+ 9 files changed, 91 insertions(+), 97 deletions(-)
+
+commit 77361e9195d41d68417bf41c275ad646d9a5f483
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sun Oct 28 20:22:01 2007 +0100
+
+    Introduce SpectreRenderContext, will be used for passing the render options to the renderer
+
+ libspectre/Makefile.am              |   3 +
+ libspectre/spectre-render-context.c | 175 ++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-render-context.h |  57 ++++++++++++
+ 3 files changed, 235 insertions(+)
+
+commit e82c4200bbd16ead8a5fd2d149eb047e96dedcc2
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 27 18:15:31 2007 +0200
+
+    Rename spectre_strdup_printf to _spectre_strdup_printf
+
+ libspectre/spectre-device.c | 22 +++++++++++-----------
+ libspectre/spectre-utils.c  |  2 +-
+ libspectre/spectre-utils.h  |  2 +-
+ test/spectre-test.c         |  2 +-
+ 4 files changed, 14 insertions(+), 14 deletions(-)
+
+commit 464ac800026e948c91b3c21d66a6bb0be1a95d9f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 27 18:06:53 2007 +0200
+
+    Render pages to png files using cairo in spectre-test
+
+ Makefile.am         |  6 +++++-
+ configure.ac        | 15 +++++++++++++++
+ test/Makefile.am    |  6 ++++--
+ test/spectre-test.c | 29 ++++++++++++++++++++++++-----
+ 4 files changed, 48 insertions(+), 8 deletions(-)
+
+commit ec155fdac5e4d94dfe227ff269df7eefe55a8ebc
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 27 17:08:32 2007 +0200
+
+    Fix memory leak
+
+ libspectre/ps.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 7a14123c6ee320771fa3d94df6b80f3212d28825
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 27 17:05:23 2007 +0200
+
+    Add reference counter to struct document in ps.[ch]
+
+ libspectre/ps.c               | 40 +++++++++++++++++++++++++++++++---------
+ libspectre/ps.h               | 10 +++++++++-
+ libspectre/spectre-device.c   |  7 ++++++-
+ libspectre/spectre-document.c |  4 ++--
+ libspectre/spectre-page.c     |  7 ++++++-
+ 5 files changed, 54 insertions(+), 14 deletions(-)
+
+commit c737b17fa80e411916ffa21553926718c96effbb
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Sat Oct 27 16:31:35 2007 +0200
+
+    Open and close the file in psscan instead of spectre_document_load
+
+ libspectre/ps.c               | 11 ++++++++++-
+ libspectre/ps.h               |  1 -
+ libspectre/spectre-document.c | 15 +--------------
+ 3 files changed, 11 insertions(+), 16 deletions(-)
+
+commit caf81f64e573c05f0082026383f1859bbef950ba
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Oct 27 13:47:56 2007 +0200
+
+    Add first implementation of a libgs based render
+
+ libspectre/Makefile.am        |   1 +
+ libspectre/ps.c               |   2 +
+ libspectre/ps.h               |   1 +
+ libspectre/spectre-device.c   | 270 +++++++++++++++++++++++++++++++++++++++++-
+ libspectre/spectre-device.h   |  16 +++
+ libspectre/spectre-document.c |  30 ++---
+ libspectre/spectre-document.h |   5 +-
+ libspectre/spectre-page.c     |  40 +++++--
+ libspectre/spectre-page.h     |  29 +++--
+ libspectre/spectre-private.h  |   2 +-
+ test/spectre-test.c           |  16 ++-
+ 11 files changed, 360 insertions(+), 52 deletions(-)
+
+commit 24f89dd393b2fabe27fe3b464a85074151e72198
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Oct 27 11:35:14 2007 +0200
+
+    Needed files to use libgs, got them from gs svn
+
+ libspectre/ghostscript/gdevdsp.h | 266 ++++++++++++++++++++++++++++++++++
+ libspectre/ghostscript/iapi.h    | 300 +++++++++++++++++++++++++++++++++++++++
+ libspectre/ghostscript/ierrors.h | 153 ++++++++++++++++++++
+ 3 files changed, 719 insertions(+)
+
+commit 9843a6c4d9ba183b114766750b38e7932c972ac5
+Author: Albert Astals Cid <aacid@kde.org>
+Date:   Sat Oct 27 11:32:11 2007 +0200
+
+    Add helper spectre_strdup_printf function
+
+ libspectre/spectre-utils.c | 50 ++++++++++++++++++++++++++++++++++++++++++++++
+ libspectre/spectre-utils.h | 35 ++++++++++++++++++++++++++++++++
+ 2 files changed, 85 insertions(+)
+
+commit b1aae6a007158eb36c97b761cf0fc526e079d0cf
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Oct 26 14:02:51 2007 +0200
+
+    Add empty files spectre-device.[ch] where we'll implement the gdevdsp.
+
+ libspectre/Makefile.am      |  2 ++
+ libspectre/spectre-device.c | 23 +++++++++++++++++++++++
+ libspectre/spectre-device.h | 32 ++++++++++++++++++++++++++++++++
+ libspectre/spectre-page.c   |  2 +-
+ 4 files changed, 58 insertions(+), 1 deletion(-)
+
+commit 13f05f38b1347be39ac569c070f376de0e745ef4
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Oct 26 13:51:04 2007 +0200
+
+    Add GPL header license
+
+ libspectre/spectre-document.c | 20 ++++++++++++++++++++
+ libspectre/spectre-document.h | 20 ++++++++++++++++++++
+ libspectre/spectre-macros.h   | 20 ++++++++++++++++++++
+ libspectre/spectre-page.c     | 20 ++++++++++++++++++++
+ libspectre/spectre-page.h     | 20 ++++++++++++++++++++
+ libspectre/spectre-private.h  | 20 ++++++++++++++++++++
+ libspectre/spectre-status.c   | 20 ++++++++++++++++++++
+ libspectre/spectre-status.h   | 20 ++++++++++++++++++++
+ libspectre/spectre.h          | 20 ++++++++++++++++++++
+ 9 files changed, 180 insertions(+)
+
+commit 6e1d2d6c65c37e09ed68d71eeb2e4fbc4068b42f
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Oct 26 13:39:04 2007 +0200
+
+    Add psgetpagebox (taken from Evince) and implement spectre_page_get_size
+
+ libspectre/ps.c               | 86 +++++++++++++++++++++++++++++++++++++++++++
+ libspectre/ps.h               | 23 +++++++++++-
+ libspectre/spectre-document.c |  2 +-
+ libspectre/spectre-page.c     | 21 +++++++++--
+ libspectre/spectre-private.h  |  4 +-
+ test/spectre-test.c           | 18 +++++++++
+ 6 files changed, 147 insertions(+), 7 deletions(-)
+
+commit 70d9b664a8fa496caad521a7bd00772d4ece9d07
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Fri Oct 26 13:05:06 2007 +0200
+
+    Merge ps.c and ps.h taken from GV.
+
+ libspectre/Makefile.am        |    7 +-
+ libspectre/ps.c               | 1944 +++++++++++++++++++++++++++++++++++++++++
+ libspectre/ps.h               |  145 +++
+ libspectre/spectre-document.c |   92 +-
+ libspectre/spectre-document.h |    5 +-
+ libspectre/spectre-status.c   |    4 +
+ libspectre/spectre-status.h   |    2 +
+ test/spectre-test.c           |   12 +-
+ 8 files changed, 2197 insertions(+), 14 deletions(-)
+
+commit d5be0148810ab70d58bc678b7aa65730bf4d5e54
+Author: Carlos Garcia Campos <carlosgc@gnome.org>
+Date:   Thu Oct 25 11:46:12 2007 +0200
+
+    Initial import
+
+ AUTHORS                       |   2 +
+ COPYING                       | 340 ++++++++++++++++++++++++++++++++++++++++++
+ INSTALL                       | 236 +++++++++++++++++++++++++++++
+ Makefile.am                   |  13 ++
+ NEWS                          |   0
+ README                        |   0
+ autogen.sh                    | 197 ++++++++++++++++++++++++
+ configure.ac                  |  26 ++++
+ libspectre.pc.in              |   9 ++
+ libspectre/Makefile.am        |  27 ++++
+ libspectre/spectre-document.c |  74 +++++++++
+ libspectre/spectre-document.h |  22 +++
+ libspectre/spectre-macros.h   |  27 ++++
+ libspectre/spectre-page.c     |  61 ++++++++
+ libspectre/spectre-page.h     |  27 ++++
+ libspectre/spectre-private.h  |  13 ++
+ libspectre/spectre-status.c   |  16 ++
+ libspectre/spectre-status.h   |  18 +++
+ libspectre/spectre.h          |   7 +
+ test/Makefile.am              |   9 ++
+ test/spectre-test.c           |  12 ++
+ 21 files changed, 1136 insertions(+)
